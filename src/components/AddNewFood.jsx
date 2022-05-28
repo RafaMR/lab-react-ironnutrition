@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function AddFood(props) {
+const AddFood = (props) => {
   const [inputs, setInputs] = useState({
     name: '',
     calories: 100,
@@ -71,4 +71,6 @@ export default function AddFood(props) {
       </form>
     </div>
   );
-}
+};
+
+export default AddFood;
