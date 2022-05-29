@@ -1,76 +1,74 @@
 import React from 'react';
 import { useState } from 'react';
 
-const AddFood = (props) => {
-  const [inputs, setInputs] = useState({
-    name: '',
-    calories: 100,
-    image: '',
-  });
+function AddNewFood(props) {
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [calories, setCalories] = useState(0);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleNameInput = (e) => setName(e.target.value);
+  const handleImageInput = (e) => setImage(e.target.value);
+  const handleCaloriesInput = (e) => setCalories(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newFood = {
-      name: inputs.name,
-      calories: inputs.calories,
-      image: inputs.image,
+      name,
+      image,
+      calories,
     };
-    props.createNewFood(newFood);
-    clearForm();
-  };
 
-  const clearForm = () => {
-    setInputs({
-      name: '',
-      calories: 100,
-      image: '',
-    });
-  };
-
-  const handleInputChange = (event) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
+    props.addFood(newFood);
+    setName('');
+    setImage('');
+    setCalories(0);
   };
 
   return (
-    <div className="form-addFood">
-      <form onSubmit={handleSubmit}>
-        <button type="submit">Add food</button>
-        <label>
-          Name:
+    <form onSubmit={handleSubmit}>
+      <div className="field">
+        <label className="label">Name</label>
+        <div className="control">
           <input
+            className="input"
             type="text"
-            name="name"
-            value={inputs.name}
-            onChange={handleInputChange}
+            placeholder="Name"
+            value={name}
+            onChange={handleNameInput}
           />
-        </label>
-
-        <label>
-          Calories:
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">Image</label>
+        <div className="control">
           <input
-            type="number"
-            name="calories"
-            value={inputs.calories}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label>
-          Image:
-          <input
+            className="input"
             type="file"
-            name="image"
-            alt={inputs.name}
-            value={inputs.image}
-            onChange={handleInputChange}
+            placeholder="Image"
+            value={image}
+            onChange={handleImageInput}
           />
-        </label>
-      </form>
-    </div>
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">Calories</label>
+        <div className="control">
+          <input
+            className="input"
+            type="number"
+            placeholder="Calories"
+            value={calories}
+            onChange={handleCaloriesInput}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <div className="control">
+          <button className="button is-link">Submit New Food</button>
+        </div>
+      </div>
+    </form>
   );
-};
+}
 
-export default AddFood;
+export default AddNewFood;

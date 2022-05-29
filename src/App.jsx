@@ -1,20 +1,29 @@
 import React from 'react';
 import { useState } from 'react';
 import 'bulma/css/bulma.css';
-import foods from './foods.json';
+import foodsData from './foods.json';
 import FoodBox from './components/FoodBox';
 import AddNewFood from './components/AddNewFood';
 
 function App() {
-  const [foodsArr, setFoods] = useState(foods);
+  const [foods, setFood] = useState(foodsData);
+  const [showForm, setForm] = useState(true);
 
-  const createFood = (foodDetails) => {
-    setFoods([foodDetails, ...foodsArr]);
+  const addNewFood = (newfood) => {
+    const updatedFood = [...foods, newfood];
+    setFood(updatedFood);
+  };
+
+  const toggleForm = () => {
+    setForm(!showForm);
   };
 
   return (
     <div className="App">
-      <AddNewFood createNewFood={createFood} />
+      <button onClick={toggleForm} className="button is-primary">
+        Add New Foods Form
+      </button>
+      {showForm && <AddNewFood addFood={addNewFood} />}
       {foods.map((food) => {
         return (
           <FoodBox
