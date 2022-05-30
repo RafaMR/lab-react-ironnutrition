@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-function AddNewFood(props) {
+const AddFoodForm = ({ addNewFood }) => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [calories, setCalories] = useState(0);
@@ -18,7 +18,7 @@ function AddNewFood(props) {
       calories,
     };
 
-    props.addFood(newFood);
+    addNewFood(newFood);
     setName('');
     setImage('');
     setCalories(0);
@@ -43,7 +43,7 @@ function AddNewFood(props) {
         <div className="control">
           <input
             className="input"
-            type="file"
+            type="text"
             placeholder="Image"
             value={image}
             onChange={handleImageInput}
@@ -64,11 +64,11 @@ function AddNewFood(props) {
       </div>
       <div className="field">
         <div className="control">
-          <button className="button is-link">Submit New Food</button>
+          <button className="button is-link">Submit New Food Form</button>
         </div>
       </div>
     </form>
   );
-}
+};
 
-export default AddNewFood;
+export default AddFoodForm;
