@@ -45,7 +45,7 @@ function App() {
           <AddFoodForm addFood={addNewFood} className="test-container" />
         )}
         <br />
-        <Search onSearch={handleSearchSubmit} />
+        <Search onSubmit={handleSearchSubmit} />
         <br />
 
         <div className="columns">

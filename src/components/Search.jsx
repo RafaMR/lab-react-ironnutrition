@@ -10,7 +10,7 @@ const SearchBar = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onClcik(searchTerm);
+    props.onSubmit(searchTerm);
   };
 
   return (
