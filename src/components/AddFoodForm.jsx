@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const AddFoodForm = ({ addNewFood }) => {
+const AddFoodForm = ({ addFood }) => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [calories, setCalories] = useState(0);
@@ -18,7 +18,7 @@ const AddFoodForm = ({ addNewFood }) => {
       calories,
     };
 
-    addNewFood(newFood);
+    addFood(newFood);
     setName('');
     setImage('');
     setCalories(0);
